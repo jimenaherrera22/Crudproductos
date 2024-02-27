@@ -1,14 +1,29 @@
-
+import NavBar from "./Components/NavBar"
+import Foot from "./Components/Foot"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./Components/Pages/Home"
+import AcercadeNosotros from "./Components/Pages/AcercadeNosotros"
+import Administracion from "./Components/Pages/Administracion"
 
 function App() {
 
-
   return (
     <>
-      <div className="bg-dark">
-       <h1>Hello world</h1>
-      </div>
-      
+     <BrowserRouter>
+    <header>
+      <NavBar></NavBar>
+    </header>
+    <main>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/acercadenosotros" element={<AcercadeNosotros/>}/>
+        <Route path="/administracion" element={<Administracion/>}/>
+      </Routes>  
+    </main>
+    <footer>
+      <Foot></Foot>
+    </footer>
+    </BrowserRouter>
     </>
   )
 }
