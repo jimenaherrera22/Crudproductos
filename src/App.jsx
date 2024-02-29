@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./Components/Pages/Home"
 import AcercadeNosotros from "./Components/Pages/AcercadeNosotros"
 import Administracion from "./Components/Pages/Administracion"
+import CrearProducto from "./Components/sections/CrearProducto"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/acercadenosotros" element={<AcercadeNosotros/>}/>
         <Route path="/administracion" element={<Administracion/>}/>
+        <Route path="/crear-producto" element={<CrearProducto/>}/>
       </Routes>  
     </main>
     <footer>
