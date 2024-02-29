@@ -1,0 +1,16 @@
+{
+  "productos": [
+    {
+      "id": "d28a",
+      "title": "Coca-cola",
+      "description": "gaseosa",
+      "category": "Bebidas"
+    },
+    {
+      "id": "17b6",
+      "title": "Pepsi",
+      "description": "bebida de 3lts",
+      "category": "Bebidas"
+    }
+  ]
+}
