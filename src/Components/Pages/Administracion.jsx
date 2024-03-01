@@ -9,7 +9,7 @@ const Administracion = () => {
             <div className=" container my-3 py-3">
                 <Button variant="primary" onClick={()=>{navigate("/crear-producto")}} >Crear Producto</Button>
             </div>
-            <ListadoProductos></ListadoProductos>
+            <ListadoProductos/>
         </div>
     );
 };

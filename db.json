@@ -1,16 +1,16 @@
 {
   "productos": [
     {
-      "id": "d28a",
-      "title": "Coca-cola",
-      "description": "gaseosa",
-      "category": "Bebidas"
+      "title": "Coca-cola 3lts",
+      "description": "Coca cola 3lts descartable",
+      "category": "Bebidas",
+      "id": "d28a"
     },
     {
-      "id": "17b6",
       "title": "Pepsi",
-      "description": "bebida de 3lts",
-      "category": "Bebidas"
+      "description": "Pepsi tradicional descartable ",
+      "category": "Bebidas",
+      "id": "17b6"
     }
   ]
 }

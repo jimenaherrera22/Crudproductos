@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import Table from 'react-bootstrap/Table';
 import Producto from './Producto';
 
 const ListadoProductos = () => {
-    const [productos,setProductos]=useState();
+    const [productos, setProductos]=useState([]);
     const API=import.meta.env.VITE_API;
     const getProductos=async()=>{
         try {
@@ -23,10 +23,12 @@ const ListadoProductos = () => {
     },[])
    //console.log("state productos",productos);
     return (
+      <>
         <div className='container-fluid'>
             <div className='text-center'>
           <h2>Listado Productos</h2>
             </div>
+            
           <Table striped bordered hover variant='dark' >
       <thead>
         <tr>
@@ -43,10 +45,11 @@ const ListadoProductos = () => {
                 <Producto
                  producto={element} key={index} />
             );
-        })}    
+        })};
       </tbody>
     </Table>  
         </div>
+        </>
     );
 };
 
