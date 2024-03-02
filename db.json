@@ -1,16 +1,22 @@
 {
   "productos": [
     {
-      "id": "d28a",
-      "title": "Coca-cola",
-      "description": "gaseosa",
-      "category": "Bebidas"
+      "title": "Coca cola 2.25lts",
+      "description": "Coca cola 2.25lts descartable",
+      "category": "Bebidas",
+      "id": "d28a"
     },
     {
-      "id": "17b6",
-      "title": "Pepsi",
-      "description": "bebida de 3lts",
-      "category": "Bebidas"
+      "title": "Pepsi 2.25lts",
+      "description": "Pepsi 2.25lts tradicional descartable",
+      "category": "Bebidas",
+      "id": "17b6"
+    },
+    {
+      "title": "Arroz gallo",
+      "description": "Arroz gallo x 1kg",
+      "category": "Alimentos",
+      "id": "7fbe"
     }
   ]
 }

@@ -1,25 +1,34 @@
-//import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-//import { validarCategoria } from '../../helpers/validaciones';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import clsx from 'clsx';
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+const Editar = () => {
+    const [producto, setProducto]=useState(undefined);
+    const {id}=useParams()
+    //UTILIZAMOS LA VARIABLE DE ENTORNO
+    const API=import.meta.env.VITE_API;
 
+const getProductos= async () =>{
+    try {
+        const{data}=await axios.get(`${API}/productos/${id}`)
+        setProducto(data);
+    } catch (error) {
+        console.log("ERROR-->",error);
+    }
+}
+    useEffect(()=>{
+        console.log("id del producto a editar-->", id);
+        getProductos();
+    },[])
+    //UTILIZAMOS USENAVIGATE DE REACT-ROUTER-DOM
+    const navigate=useNavigate();
 
-const CrearProducto = () => {
-    //los productos van a tener las siguiengtes propiedades:titulo, descripcion, categoria, ademas va a tener un identificador unico;
-// const[title, setTitle]= useState("");
-// const[description, setDescription]= useState("");
-// const[category, setCategory]= useState("");
-
-//UTILIZAMOS LA VARIABLE DE ENTORNO
-const API=import.meta.env.VITE_API;
-//UTILIZAMOS USENAVIGATE DE REACT-ROUTER-DOM
-const navigate=useNavigate();
-
+//Inicio config formik
 const ProductoSchema = Yup.object().shape({
     title: Yup.string().min(4, "minimo 4 caracteres").max(20, "maximo 20 caracteres").required("El titulo es requerido"),
     description: Yup.string().min(4, "minimo 4 caracteres").max(200, "maximo 200 caracteres").required("La descripcion es requerida"),
@@ -31,7 +40,6 @@ const initialValues={
     category:"",
 };
 
-//Inicio conf formik
 const formik= useFormik({
      initialValues,
      validationSchema:ProductoSchema,
@@ -40,7 +48,7 @@ const formik= useFormik({
      onSubmit: (values)=>{
         console.log("values de Formik-->",values);
         Swal.fire({
-            title: "Estas seguro de guardar este producto?",
+            title: "Estas seguro de editar este producto?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -49,8 +57,8 @@ const formik= useFormik({
           }).then(async(result) => {
             if (result.isConfirmed) {
                 try {
-                    const response= await fetch(`${API}/productos`,{
-                        method: "POST",
+                    const response= await fetch(`${API}/productos/${id}`,{
+                        method: "PUT",
                         headers:{
                             "Content-Type": "application/json"
                         },
@@ -58,11 +66,11 @@ const formik= useFormik({
                     });
                     //console.log("Response--",response);
                     //console.log(response.status);
-                    if (response.status===201) {
-                        formik.resetForm();           
+                    if (response.status===200) {
+                        //formik.resetForm();           
                     Swal.fire({
                      title: "Exito!",
-                     text: "Se creo un nuevo producto",
+                     text: "Se actualizo el producto correctamente",
                      icon: "success"
                     });
                     navigate("/administracion")
@@ -88,10 +96,18 @@ const nuevoProducto={
 }
 console.log("el nuevo producto",nuevoProducto);
 }*/
+
+useEffect(()=>{
+if (producto!==undefined) {
+    formik.setFieldValue("title", producto.title, true);
+    formik.setFieldValue("description", producto.description, true);
+    formik.setFieldValue("category", producto.category, true);
+}
+},[producto])
     return (
         <div className='container my-3 py-3'>
             <Button variant='secondary' onClick={()=>navigate(-1)} >Atras</Button>
-            <div className='text-center'><h2>Crear Productos</h2></div>
+            <div className='text-center'><h2>Editar Producto</h2></div>
             < Form onSubmit={formik.handleSubmit}>
       <Form.Group className="mb-3" controlId="title">
         <Form.Label>Titulo</Form.Label>
@@ -173,7 +189,7 @@ console.log("el nuevo producto",nuevoProducto);
       </Button>
     </Form>
         </div>
-    );
+    )
 };
 
-export default CrearProducto;
+export default Editar;
