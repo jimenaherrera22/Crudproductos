@@ -54,7 +54,7 @@ const ListadoProductos = () => {
         {productos.map((element, index)=>{
             return(
                 <Producto
-                 producto={element} handleShow={handleShow} key={index} />
+                 producto={element} handleShow={handleShow} key={index} getProductos={getProductos} />
             );
         })};
       </tbody>

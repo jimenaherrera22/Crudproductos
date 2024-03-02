@@ -6,6 +6,7 @@ import AcercadeNosotros from "./Components/Pages/AcercadeNosotros"
 import Administracion from "./Components/Pages/Administracion"
 import CrearProducto from "./Components/sections/CrearProducto"
 import Editar from "./Components/sections/Editar"
+import ErrorPage from "./Components/Pages/ErrorPage"
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/administracion" element={<Administracion/>}/>
         <Route path="/crear-producto" element={<CrearProducto/>}/>
         <Route path="/editar/:id" element={<Editar/>}/>
+        <Route path="/*" element={<ErrorPage/>}/>
       </Routes>  
     </main>
     <footer>
