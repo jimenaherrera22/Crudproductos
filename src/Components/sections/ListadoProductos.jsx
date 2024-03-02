@@ -1,9 +1,19 @@
 import {useEffect, useState} from 'react';
 import Table from 'react-bootstrap/Table';
 import Producto from './Producto';
+import ModalEditar from './ModalEditar';
 
 const ListadoProductos = () => {
     const [productos, setProductos]=useState([]);
+    const [show, setShow] = useState(false);
+  const [productEdit, setProductEdit]=useState(undefined);
+  const handleClose = () => {
+    setProductEdit(undefined);
+    setShow(false)};
+  const handleShow = (prod) => {
+    setProductEdit(prod)
+    setShow(true) 
+  };
     const API=import.meta.env.VITE_API;
     const getProductos=async()=>{
         try {
@@ -24,11 +34,12 @@ const ListadoProductos = () => {
    //console.log("state productos",productos);
     return (
       <>
+      <ModalEditar show={show} handleClose={handleClose} producto={productEdit} getProductos={getProductos} />
         <div className='container-fluid'>
             <div className='text-center'>
           <h2>Listado Productos</h2>
             </div>
-            
+            <div className='table-responsive'>
           <Table striped bordered hover variant='dark' >
       <thead>
         <tr>
@@ -43,11 +54,12 @@ const ListadoProductos = () => {
         {productos.map((element, index)=>{
             return(
                 <Producto
-                 producto={element} key={index} />
+                 producto={element} handleShow={handleShow} key={index} />
             );
         })};
       </tbody>
     </Table>  
+    </div>
         </div>
         </>
     );

@@ -65,6 +65,7 @@ const formik= useFormik({
                      text: "Se creo un nuevo producto",
                      icon: "success"
                     });
+                    navigate("/administracion")
                     }
                 } catch (error) {
                     console.log("ERROR--",error);
